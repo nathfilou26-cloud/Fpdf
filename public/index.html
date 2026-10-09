@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fpdf-vercel - Créateur et Lecteur de PDF</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📄 Fpdf-vercel</h1>
+            <p>Créez et lisez vos fichiers PDF avec Node.js</p>
+        </header>
+        
+        <nav>
+            <button id="create-tab" class="active">Créer PDF</button>
+            <button id="read-tab">Lire PDF</button>
+        </nav>
+        
+        <main>
+            <!-- Onglet Création -->
+            <section id="create-section" class="section active">
+                <h2>Créer un PDF</h2>
+                <form id="pdf-form">
+                    <div class="form-group">
+                        <label for="title">Titre du document</label>
+                        <input type="text" id="title" name="title" placeholder="Mon Document" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="author">Auteur</label>
+                        <input type="text" id="author" name="author" placeholder="Votre Nom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="content">Contenu</label>
+                        <textarea id="content" name="content" rows="10" placeholder="Saisissez votre contenu ici..." required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <span class="btn-text">Générer PDF</span>
+                        <span class="btn-loading">⏳ Génération...</span>
+                    </button>
+                </form>
+                
+                <div id="generate-result" class="result"></div>
+            </section>
+            
+            <!-- Onglet Lecture -->
+            <section id="read-section" class="section">
+                <h2>Lire un PDF</h2>
+                
+                <div class="upload-area" id="upload-area">
+                    <input type="file" id="pdf-file" accept=".pdf">
+                    <label for="pdf-file" class="upload-label">
+                        <span class="upload-icon">📁</span>
+                        <span class="upload-text">Glisser-déposer un PDF ou cliquer pour sélectionner</span>
+                    </label>
+                </div>
+                
+                <div id="pdf-viewer" class="pdf-viewer">
+                    <div class="pdf-controls">
+                        <button id="prev-page" class="btn btn-secondary" disabled>← Précédent</button>
+                        <span id="page-info">Page 1 / 1</span>
+                        <button id="next-page" class="btn btn-secondary" disabled>Suivant →</button>
+                        <button id="zoom-in" class="btn btn-secondary">+</button>
+                        <button id="zoom-out" class="btn btn-secondary">-</button>
+                    </div>
+                    <canvas id="pdf-canvas"></canvas>
+                    <div id="pdf-text" class="pdf-text"></div>
+                </div>
+                
+                <div id="read-result" class="result"></div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>Fpdf-vercel - Utilise PDF-Lib et PDF.js</p>
+        </footer>
+    </div>
+    
+    <script src="/js/app.js"></script>
+</body>
+</html>
